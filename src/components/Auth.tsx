@@ -38,7 +38,7 @@ const Auth = () => {
 
     const { username, password, phoneNumber, avatarURL } = form;
 
-    const URL = 'https://localhost:5000/api/v1/auth';
+    const URL = 'http://localhost:5000/api/v1';
 
     const {
       data: { token, userId, hashedPassword, fullName },

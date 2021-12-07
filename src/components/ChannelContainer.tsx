@@ -1,9 +1,12 @@
 /** @format */
 
-import React from 'react';
+import { Channel, useChatContext } from 'stream-chat-react';
+import { ChannelInner, CreateChannel, EditChannel } from './';
 
 const ChannelContainer = () => {
-  return <div>ChannelContainer</div>;
+  const { channel } = useChatContext();
+
+  return <div></div>;
 };
 
 export default ChannelContainer;

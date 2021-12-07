@@ -1,6 +1,5 @@
 /** @format */
 
-import { useState } from 'react';
 import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
 import Cookies from 'universal-cookie/es6';
@@ -14,9 +13,20 @@ const Cookie = new Cookies();
 
 const client = StreamChat.getInstance(apiKey);
 
-const authToken = Cookie.get('token');
+const authToken: string = Cookie.get('token');
 
 if (authToken) {
+  client.connectUser(
+    {
+      id: Cookie.get('userId'),
+      name: Cookie.get('username'),
+      fullName: Cookie.get('fullName'),
+      image: Cookie.get('avatarURL'),
+      hashedPassword: Cookie.get('hashedPassword'),
+      phoneNumber: Cookie.get('phoneNumber'),
+    },
+    authToken
+  );
 }
 
 const App = () => {
