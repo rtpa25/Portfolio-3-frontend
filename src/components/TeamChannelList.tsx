@@ -1,6 +1,12 @@
 /** @format */
 
-import {} from '../assets/AddChannel';
+import { AddChannel } from '../assets/AddChannel';
+import { useAppDispatch } from '../hooks';
+import {
+  setCreateType,
+  setIsCreating,
+  setIsEditing,
+} from '../store/slices/creationSlice';
 
 interface TeamChannelListProps {
   error: boolean;
@@ -14,6 +20,8 @@ const TeamChannelList: React.FC<TeamChannelListProps> = ({
   loading,
   type,
 }) => {
+  const dispatch = useAppDispatch();
+
   if (error) {
     return type === 'team' ? (
       <div className='team-channel-list'>
@@ -34,20 +42,24 @@ const TeamChannelList: React.FC<TeamChannelListProps> = ({
     );
   }
 
+  const addChannelHandler = (type: string) => {
+    dispatch(setCreateType({ type: type === 'team' ? 'team' : 'messaging' }));
+    dispatch(setIsCreating({ creating: true }));
+    dispatch(setIsEditing({ editing: true }));
+  };
+
   return (
     <div className='team-channel-list'>
       <div className='team-channel-list__header'>
         <p className='team-channel-list__header__title'>
           {type === 'team' ? 'Channels' : 'Direct Messages'}
         </p>
-        {/* <AddChannel
-          isCreating={isCreating}
-          setIsCreating={setIsCreating}
-          setCreateType={setCreateType}
-          setIsEditing={setIsEditing}
-          type={type === 'team' ? 'team' : 'messaging'}
-          setToggleContainer={setToggleContainer}
-        /> */}
+        <div
+          onClick={() => {
+            addChannelHandler(type);
+          }}>
+          <AddChannel />
+        </div>
       </div>
       {children}
     </div>

@@ -1,10 +1,15 @@
 /** @format */
 
+//Dependencies
 import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
 import Cookies from 'universal-cookie/es6';
-import './App.css';
 
+//CSS files
+import './App.css';
+import 'stream-chat-react/dist/css/index.css';
+
+//internal imports
 import { ChannelContainer, ChannelListContainer, Auth } from './components';
 
 const apiKey = 'ybx2pqnkr2p4';
@@ -30,16 +35,15 @@ if (authToken) {
 }
 
 const App = () => {
-  if (!authToken) {
-    return <Auth />;
-  }
-  return (
+  return authToken ? (
     <div className='app__wrapper'>
       <Chat client={client} theme='team light'>
         <ChannelListContainer />
         <ChannelContainer />
       </Chat>
     </div>
+  ) : (
+    <Auth />
   );
 };
 
