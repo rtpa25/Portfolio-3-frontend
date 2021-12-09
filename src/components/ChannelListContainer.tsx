@@ -1,8 +1,10 @@
 /** @format */
-import { ChannelList } from 'stream-chat-react';
+import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 import HospitalIcon from '../assets/hospital.png';
 import LogoutIcon from '../assets/logout.png';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { setToggleContainer } from '../store/slices/creationSlice';
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
 
 const Cookie = new Cookies();
@@ -40,7 +42,8 @@ const customChannelMessagingFilter = (channels: any) => {
   return channels.filter((channel: any) => channel.type === 'messaging');
 };
 
-const ChannelListContainer = () => {
+const ChannelListContent: React.FC = () => {
+  const { client } = useChatContext();
   const logoutHandler = () => {
     Cookie.remove('token');
     Cookie.remove('userId');
@@ -51,7 +54,7 @@ const ChannelListContainer = () => {
     Cookie.remove('phoneNumber');
     window.location.reload();
   };
-
+  const filters = { members: { $in: [client.userID] } };
   return (
     <>
       <SideBar logout={logoutHandler} />
@@ -59,7 +62,7 @@ const ChannelListContainer = () => {
         <CompanyHeader />
         <ChannelSearch />
         <ChannelList
-          filters={{}}
+          filters={filters as any}
           channelRenderFilterFn={customChannelTeamFilter}
           List={(listProps) => (
             <TeamChannelList
@@ -70,11 +73,11 @@ const ChannelListContainer = () => {
             />
           )}
           Preview={(previewProps) => (
-            <TeamChannelPreview type={undefined} {...previewProps} />
+            <TeamChannelPreview type={'team'} {...previewProps} />
           )}
         />
         <ChannelList
-          filters={{}}
+          filters={filters as any}
           channelRenderFilterFn={customChannelMessagingFilter}
           List={(listProps) => (
             <TeamChannelList
@@ -88,6 +91,31 @@ const ChannelListContainer = () => {
             <TeamChannelPreview type={'messaging'} {...previewProps} />
           )}
         />
+      </div>
+    </>
+  );
+};
+
+const ChannelListContainer: React.FC = () => {
+  const { toggleContainer } = useAppSelector((state) => state.creation);
+  const dispatch = useAppDispatch();
+
+  return (
+    <>
+      <div className='channel-list__container'>
+        <ChannelListContent />
+      </div>
+
+      <div
+        className='channel-list__container-responsive'
+        style={{
+          left: toggleContainer ? '0%' : '-89%',
+          backgroundColor: '#005fff',
+        }}>
+        <div
+          className='channel-list__container-toggle'
+          onClick={() => dispatch(setToggleContainer())}></div>
+        <ChannelListContent />
       </div>
     </>
   );

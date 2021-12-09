@@ -6,12 +6,14 @@ interface CreationState {
   createType: string;
   isCreating: boolean;
   isEditing: boolean;
+  toggleContainer: boolean;
 }
 
 const initialState: CreationState = {
   createType: '',
   isCreating: false,
   isEditing: false,
+  toggleContainer: false,
 };
 
 const CreationSlice = createSlice({
@@ -27,9 +29,16 @@ const CreationSlice = createSlice({
     setIsCreating: (state, action: PayloadAction<{ creating: boolean }>) => {
       state.isCreating = action.payload.creating;
     },
+    setToggleContainer: (state) => {
+      state.toggleContainer = !state.toggleContainer;
+    },
   },
 });
 
-export const { setCreateType, setIsEditing, setIsCreating } =
-  CreationSlice.actions;
+export const {
+  setCreateType,
+  setIsEditing,
+  setIsCreating,
+  setToggleContainer,
+} = CreationSlice.actions;
 export default CreationSlice.reducer;

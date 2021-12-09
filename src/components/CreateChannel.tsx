@@ -26,6 +26,7 @@ const CreateChannel: React.FC<CreateChannelProps> = ({ createType }) => {
       await newChannel.watch();
       setChannelName('');
       dispatch(setIsCreating({ creating: false }));
+      dispatch(setIsEditing({ editing: false }));
       setSelectedUsers([client.userID] as string[]);
       setActiveChannel(newChannel);
     } catch (error) {
@@ -35,7 +36,7 @@ const CreateChannel: React.FC<CreateChannelProps> = ({ createType }) => {
 
   const closeChannelHandler = () => {
     dispatch(setIsCreating({ creating: false }));
-    dispatch(setIsEditing({ editing: true }));
+    dispatch(setIsEditing({ editing: false }));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

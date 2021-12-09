@@ -2,6 +2,12 @@
 
 import React from 'react';
 import { Avatar, useChatContext } from 'stream-chat-react';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import {
+  setIsCreating,
+  setIsEditing,
+  setToggleContainer,
+} from '../store/slices/creationSlice';
 
 interface TeamChannelPreviewProps {
   channel: any;
@@ -13,6 +19,9 @@ const TeamChannelPreview: React.FC<TeamChannelPreviewProps> = ({
   type,
 }) => {
   const { channel: activeChannel, client } = useChatContext();
+  const { setActiveChannel } = useChatContext();
+  const dispatch = useAppDispatch();
+  const { toggleContainer } = useAppSelector((state) => state.creation);
 
   //This is the channel preview
   const ChannelPreview = () => (
@@ -45,7 +54,13 @@ const TeamChannelPreview: React.FC<TeamChannelPreviewProps> = ({
         channel?.id === activeChannel?.id
           ? 'channel-preview__wrapper__selected'
           : 'channel-preview__wrapper'
-      }>
+      }
+      onClick={() => {
+        dispatch(setIsCreating({ creating: false }));
+        dispatch(setIsEditing({ editing: false }));
+        setActiveChannel(channel);
+        if (toggleContainer) dispatch(setToggleContainer());
+      }}>
       {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
     </div>
   );
