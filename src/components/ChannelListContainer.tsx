@@ -5,7 +5,11 @@ import HospitalIcon from '../assets/hospital.png';
 import LogoutIcon from '../assets/logout.png';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { setToggleContainer } from '../store/slices/creationSlice';
-import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
+import {
+  ChannelSearch,
+  TeamChannelList,
+  TeamChannelPreview,
+} from './z(exporter)';
 
 const Cookie = new Cookies();
 

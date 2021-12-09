@@ -10,7 +10,11 @@ import './App.css';
 import 'stream-chat-react/dist/css/index.css';
 
 //internal imports
-import { ChannelContainer, ChannelListContainer, Auth } from './components';
+import {
+  ChannelContainer,
+  ChannelListContainer,
+  Auth,
+} from './components/z(exporter)';
 
 const apiKey = 'ybx2pqnkr2p4';
 

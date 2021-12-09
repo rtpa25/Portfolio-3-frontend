@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useChatContext } from 'stream-chat-react';
-import { ResultsDropdown } from '.';
+import { ResultsDropdown } from './z(exporter)';
 import { SearchIcon } from '../assets/SearchIcon';
 
 const ChannelSearch = () => {

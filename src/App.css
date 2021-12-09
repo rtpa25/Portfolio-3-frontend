@@ -355,9 +355,7 @@ body {
   margin-right: 10px;
 }
 
-.str-chat__list--thread
-  .str-chat__message-simple__actions__action--options
-  .str-chat__message-actions-box {
+.str-chat__list--thread .str-chat__message-simple__actions__action--options .str-chat__message-actions-box {
   left: initial;
   right: 100%;
   border-radius: var(--border-radius-md);
@@ -383,11 +381,9 @@ body {
   width: 44px;
   height: 44px;
   margin: 14px;
-  background: linear-gradient(
-      150.64deg,
+  background: linear-gradient(150.64deg,
       rgba(0, 0, 0, 0.1) 12.73%,
-      rgba(0, 0, 0, 0) 89.32%
-    ),
+      rgba(0, 0, 0, 0) 89.32%),
     #ffffff;
   border-radius: 9999px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.33);
@@ -412,11 +408,9 @@ body {
   width: 44px;
   height: 44px;
   margin: 14px;
-  background: linear-gradient(
-      150.64deg,
+  background: linear-gradient(150.64deg,
       rgba(0, 0, 0, 0.1) 12.73%,
-      rgba(0, 0, 0, 0) 89.32%
-    ),
+      rgba(0, 0, 0, 0) 89.32%),
     #ffffff;
   border-radius: 9999px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.33);
@@ -1250,9 +1244,7 @@ ul.str-chat__simple-reactions-list:hover {
   padding: 10px 0 0;
 }
 
-.str-chat__edit-message-form
-  .str-chat__message-team-form-footer
-  button[type="submit"] {
+.str-chat__edit-message-form .str-chat__message-team-form-footer button[type="submit"] {
   color: var(--primary-color);
 }
 

@@ -1,7 +1,7 @@
 /** @format */
 import React, { useState } from 'react';
 import { useChatContext } from 'stream-chat-react';
-import { UserList } from './';
+import { UserList } from './z(exporter)';
 import { CloseCreateChannel } from '../assets/CloseCreateChannel';
 import { setIsCreating, setIsEditing } from '../store/slices/creationSlice';
 import { useAppDispatch } from '../hooks';

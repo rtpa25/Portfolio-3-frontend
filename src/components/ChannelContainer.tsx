@@ -2,7 +2,7 @@
 
 import { Channel, MessageTeam } from 'stream-chat-react';
 import { useAppSelector } from '../hooks';
-import { ChannelInner, CreateChannel, EditChannel } from './';
+import { ChannelInner, CreateChannel, EditChannel } from './z(exporter)';
 
 const ChannelContainer = () => {
   const { isCreating, isEditing, createType } = useAppSelector(
@@ -36,7 +36,7 @@ const ChannelContainer = () => {
     </div>
   );
   return (
-    <div className=' channel__container'>
+    <div className='channel__container'>
       <Channel
         EmptyStateIndicator={EmptyState}
         Message={(messageProps, i) => (
