@@ -226,7 +226,7 @@ body {
 
 @media screen and (max-width: 960px) {
   .str-chat-channel-list.team {
-    position: unset;
+    position: relative;
     left: unset;
     top: unset;
     z-index: unset;
@@ -402,6 +402,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .channel-list__sidebar__icon2 {
@@ -1732,6 +1733,7 @@ div.rta__autocomplete.str-chat__emojisearch {
   .channel-list__container {
     display: none;
   }
+
 
   .team-channerl-header_menu-icon {
     display: flex;

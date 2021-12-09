@@ -5,6 +5,7 @@ import HospitalIcon from '../assets/hospital.png';
 import LogoutIcon from '../assets/logout.png';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { setToggleContainer } from '../store/slices/creationSlice';
+
 import {
   ChannelSearch,
   TeamChannelList,
@@ -21,7 +22,14 @@ const SideBar: React.FC<SideBarProps> = ({ logout }) => (
   <div className='channel-list__sidebar'>
     <div className='channel-list__sidebar__icon1'>
       <div className='icon1__inner'>
-        <img src={HospitalIcon} alt='Hospital' width='30' />
+        <img
+          src={HospitalIcon}
+          alt='Hospital'
+          width='30'
+          onClick={() => {
+            window.location.reload();
+          }}
+        />
       </div>
     </div>
     <div className='channel-list__sidebar__icon2'>
@@ -34,7 +42,7 @@ const SideBar: React.FC<SideBarProps> = ({ logout }) => (
 
 const CompanyHeader: React.FC = () => (
   <div className='channel-list__header'>
-    <p className='channel-list__header__text'>Medical Pager</p>
+    <p className='channel-list__header__text'>Medico</p>
   </div>
 );
 
@@ -116,10 +124,17 @@ const ChannelListContainer: React.FC = () => {
           left: toggleContainer ? '0%' : '-89%',
           backgroundColor: '#005fff',
         }}>
-        <div
-          className='channel-list__container-toggle'
-          onClick={() => dispatch(setToggleContainer())}></div>
+        <div className='channel-list__container-toggle'></div>
         <ChannelListContent />
+        <button
+          onClick={() => dispatch(setToggleContainer())}
+          style={{
+            cursor: 'pointer',
+            border: 'none',
+            backgroundColor: '#5a94fa',
+          }}>
+          clickable
+        </button>
       </div>
     </>
   );

@@ -6,8 +6,8 @@ import { Chat } from 'stream-chat-react';
 import Cookies from 'universal-cookie/es6';
 
 //CSS files
-import './App.css';
 import 'stream-chat-react/dist/css/index.css';
+import './App.css';
 
 //internal imports
 import {
