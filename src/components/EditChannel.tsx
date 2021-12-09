@@ -9,7 +9,7 @@ import { useAppDispatch } from '../hooks';
 import { setIsEditing } from '../store/slices/creationSlice';
 
 const EditChannel = () => {
-  const { channel, setActiveChannel } = useChatContext();
+  const { channel } = useChatContext();
   const [channelName, setChannelName] = useState<any>(channel?.data?.name);
   const [selectedUsers, setSelectedUsers] = useState<any[]>([]);
   const dispatch = useAppDispatch();
