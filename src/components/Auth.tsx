@@ -27,7 +27,8 @@ const initialState = {
 
 const Auth = () => {
   const [form, setForm] = useState<formState>(initialState);
-  const [isSignup, setIsSignup] = useState<boolean>(true);
+  const [isSignup, setIsSignup] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -40,6 +41,7 @@ const Auth = () => {
 
     const URL = 'https://rp-portfolio-3.herokuapp.com/api/v1';
 
+    setIsFetching(true);
     const {
       data: { token, userId, hashedPassword, fullName },
     } =
@@ -62,7 +64,8 @@ const Auth = () => {
       cookies.set('avatarURL', avatarURL);
       cookies.set('hashedPassword', hashedPassword);
     }
-
+    setForm(initialState);
+    setIsFetching(false);
     //reload the browser to access the updated cookies
     window.location.reload();
   };
@@ -76,6 +79,12 @@ const Auth = () => {
       <div className='auth__form-container_fields'>
         <div className='auth__form-container_fields-content'>
           <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
+          {!isSignup && (
+            <div>
+              <p>Demo username: Dr. Anita</p>
+              <p>Demo password: test0123</p>
+            </div>
+          )}
           <form onSubmit={handleSubmit}>
             {isSignup && (
               <div className='auth__form-container_fields-content_input'>
@@ -146,7 +155,9 @@ const Auth = () => {
               </div>
             )}
             <div className='auth__form-container_fields-content_button'>
-              <button>{isSignup ? 'Sign Up' : 'Sign In'}</button>
+              <button disabled={isFetching}>
+                {isSignup ? 'Sign Up' : 'Sign In'}
+              </button>
             </div>
           </form>
           <div className='auth__form-container_fields-account'>
